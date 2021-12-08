@@ -1,0 +1,51 @@
+<div class="card mb-3 mt-1 shadow-sm">
+  {% load thumbnail %}
+    {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+    <img class="card-img" src="{{ im.url }}">
+  {% endthumbnail %}
+  
+  <div class="card-body">
+    <h3>
+      <p>Автор: <a href="{% url 'profile' post.author %}"> {{ post.author.get_full_name }}</a></p>
+      <p>Группа: <a href="{% url 'group_posts' post.group %}"> {{ post.group }}</a></p>
+      Дата публикации: {{ post.pub_date|date:"d M Y" }}
+    </h3>
+      {{ post.text }}
+    </p>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group ">
+
+          {% if add_comment %}
+            <a class="btn btn-sm text-muted" href="{% url 'post_edit' post.author post.id %}" role="button">
+              Редактировать
+            </a>
+
+          {% else %}
+            <a class="btn btn-sm text-muted" href="{% url 'post' post.author post.id %}" role="button">
+              Перейти к публикации
+            </a>
+
+            {% if request.user.username == post.author.username %}
+              <a class="btn btn-sm text-muted" href="{% url 'post_edit' post.author post.id %}" role="button">
+                Редактировать
+              </a>
+            {% endif %}
+
+          {% endif %}
+        </a>
+      </div>
+      <!-- Дата публикации  -->
+      <small class="btn btn-sm text-muted">{{ post.pub_date }}</small>
+    </div>
+    
+  </div>
+  
+  {% if add_comment %}
+    <form method="post" action="{% url 'add_comment' post.author post.id %}">
+    {% include 'includes/comments.html' %}
+  </form>
+  {% endif %}
+
+
+</div>
+
