@@ -1,3 +1,42 @@
-# hw05_final
+# yatube_social
+## Описание
+Социальная сеть ведения блогов
+## Установка
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+Создать и активировать виртуальное окружение:
+
+```sh
+python3 -m venv env
+source env/bin/activate
+```
+Установить зависимости из файла requirements.txt:
+```sh
+python3 -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+Выполнить миграции:
+
+
+```sh
+python3 manage.py migrate
+```
+
+Запустить проект
+
+```sh
+python3 manage.py runserver
+```
+
+## Системные требования
+
+* Python 3.7 
+* Django 2.2.6
+
+## Планы по доработке
+
+* Wish-лист каждого автора (надо же знать, что дарить человеку на праздники)
+* Аватарка пользователя
+* Яркое оформление
+* Личные сообщения(но наверно это жир)
+* Обратная связь с пользователями
+* Возможность удаления пользователем своих постов
